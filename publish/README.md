@@ -144,9 +144,18 @@ gh repo create my-media-repo --public --source=. --remote=origin --push
 gh api repos/<you>/my-media-repo/pages -X POST -f "source[branch]=main" -f "source[path]=/"
 ```
 Then set `IG_VIDEO_PUBLIC_BASE_URL=https://<you>.github.io/my-media-repo`
-in `.env`. Push each day's video to this repo before publishing it — the
-file needs to already be live at that URL when `media_publish` runs. Any
-other public static host (S3, Cloudflare R2, Netlify, …) works the same way.
+and `MEDIA_REPO_DIR=/path/to/my-media-repo` in `.env`. You don't need to push
+each video yourself — when `publish_all.py` runs with `instagram` in
+`--platforms`, it copies the video into `MEDIA_REPO_DIR`, commits, pushes,
+and polls the public URL until GitHub Pages has actually deployed it before
+calling the Instagram API (skips the push if that file's already hosted and
+unchanged). It then runs `prune_media.py`, which deletes anything more than
+12 hours past its own post from that repo — Instagram only fetches a video
+once, during upload, so there's no reason to keep hosting it publicly after
+that. Pruning happens as a side effect of posting rather than on a timer; run
+`python prune_media.py` by hand any time to check without posting anything.
+Any other public static host (S3, Cloudflare R2, Netlify, …) works the same
+way — skip `MEDIA_REPO_DIR`/the auto-push and keep that host updated yourself.
 
 ## Usage
 

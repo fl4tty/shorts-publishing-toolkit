@@ -4,6 +4,8 @@ publish/.env
 publish/client_secret.json
 publish/token_youtube.json
 publish/posting_checklist.json
+publish/media_log.json
+publish/prune_media.log
 
 # generated media / cache
 __pycache__/

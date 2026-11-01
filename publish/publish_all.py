@@ -13,11 +13,76 @@ instagram_upload.py) — run those setup steps once before using this.
 import argparse
 import json
 import os
+import subprocess
 import sys
+import time
+from datetime import datetime, timezone
+
+import requests
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(os.path.dirname(HERE), "output")
 CHECKLIST_FILE = os.path.join(HERE, "posting_checklist.json")
+MEDIA_LOG_FILE = os.path.join(HERE, "media_log.json")
+MEDIA_REPO = os.environ.get(
+    "MEDIA_REPO_DIR", os.path.join(os.path.dirname(os.path.dirname(HERE)), "my-media-repo"))
+MEDIA_PUBLIC_BASE_URL = os.environ.get("IG_VIDEO_PUBLIC_BASE_URL", "").rstrip("/")
+
+
+def host_on_media_repo(file_path, filename, poll_timeout_s=120, poll_interval_s=8):
+    """Copy a rendered short into the media-hosting repo (MEDIA_REPO_DIR) and push it, so
+    Instagram's fetcher (which needs a public URL, not a direct upload) can
+    reach it. Polls the public URL until GitHub Pages has actually deployed
+    it - the push alone doesn't mean the URL is live yet."""
+    dest = os.path.join(MEDIA_REPO, filename)
+    with open(file_path, "rb") as src, open(dest, "wb") as out:
+        out.write(src.read())
+    subprocess.run(["git", "add", filename], check=True, cwd=MEDIA_REPO)
+    status = subprocess.run(["git", "status", "--porcelain", "--", filename],
+                            check=True, cwd=MEDIA_REPO, capture_output=True, text=True)
+    if not status.stdout.strip():
+        print(f"  {filename} already hosted and unchanged, skipping push.")
+        return
+    subprocess.run(["git", "commit", "--quiet", "-m", f"Add {filename} for Instagram hosting"],
+                   check=True, cwd=MEDIA_REPO)
+    subprocess.run(["git", "push", "--quiet"], check=True, cwd=MEDIA_REPO)
+
+    if not MEDIA_PUBLIC_BASE_URL:
+        return
+    url = f"{MEDIA_PUBLIC_BASE_URL}/{filename}"
+    deadline = time.time() + poll_timeout_s
+    while time.time() < deadline:
+        if requests.head(url, timeout=10).status_code == 200:
+            print(f"  Live at {url}")
+            return
+        time.sleep(poll_interval_s)
+    print(f"  WARNING: {url} isn't live yet after {poll_timeout_s}s - Instagram's fetch may fail.")
+
+
+def run_prune():
+    """Check media_log.json for anything past its hosting window and remove
+    it from the media repo - run right after a post instead of on a timer."""
+    print("\n--- Checking for media to prune ---")
+    subprocess.run([sys.executable, os.path.join(HERE, "prune_media.py")], check=True)
+
+
+def log_instagram_post(video_id, filename, media_id):
+    """Record when a video was fetched by Instagram, so prune_media.py knows
+    when it's safe to delete the public copy from the media-hosting repo."""
+    log = []
+    if os.path.exists(MEDIA_LOG_FILE):
+        with open(MEDIA_LOG_FILE, "r", encoding="utf-8") as f:
+            log = json.load(f)
+    log.append({
+        "id": video_id,
+        "file": filename,
+        "media_id": media_id,
+        "posted_at": datetime.now(timezone.utc).isoformat(),
+        "pruned": False,
+    })
+    with open(MEDIA_LOG_FILE, "w", encoding="utf-8") as f:
+        json.dump(log, f, indent=2, ensure_ascii=False)
+        f.write("\n")
 
 
 def load_checklist():
@@ -35,7 +100,7 @@ def find_video(checklist, video_id):
 def build_youtube_args(defaults, video):
     yt = video["youtube"]
     hashtag_line = " ".join(defaults["youtube_hashtags"])
-    credit = defaults["credit_images"] if yt.get("credit") == "images" else defaults["credit_footage"]
+    credit = defaults.get(f"credit_{yt.get('credit')}", defaults["credit_footage"])
     description = f"{yt['description']}\n\n{credit}\n\n{hashtag_line}"
     tags = defaults["youtube_tags"]
     return yt["title"], description, tags
@@ -97,9 +162,14 @@ def main():
 
     if "instagram" in platforms:
         print(f"\n--- Instagram: {video['id']} ---")
+        if not args.instagram_video_url:
+            host_on_media_repo(file_path, video["file"])
         import instagram_upload
         caption = build_social_caption(defaults["instagram_core_tags"], video["instagram"])
-        instagram_upload.upload_video(file_path=video["file"], caption=caption, video_url=args.instagram_video_url)
+        media_id = instagram_upload.upload_video(file_path=video["file"], caption=caption,
+                                                   video_url=args.instagram_video_url)
+        log_instagram_post(video["id"], video["file"], media_id)
+        run_prune()
 
 
 if __name__ == "__main__":
