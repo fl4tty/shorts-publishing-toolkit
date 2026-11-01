@@ -24,6 +24,12 @@ Image clips: give a clip a "source" ending in .jpg/.jpeg/.png/.webp and drop
 "start" - it's held for "duration" seconds with a slow Ken Burns zoom instead of
 a video crop, silent (no audio of its own). "crop_x"/"crop_y" (0-1) pick which
 part of the image fills the vertical frame if its aspect ratio doesn't match.
+
+Outro card: set "outro": true (globally in the config, or on one short) to pop a
+small "Follow/Subscribe if you like GTA" card over the last "outro_seconds"
+(default 1.5) of the short - a gradient scrim plus a badge, bottom-left, sized to
+clear the platforms' own UI. Override the line with "outro_text". Requires
+Pillow (`pip install pillow`) to render the overlay PNG.
 """
 
 import json
@@ -287,6 +293,55 @@ def image_filter(inp, x_pos, y_pos, duration, zoom_amount=0.12):
     )
 
 
+def make_outro_png(path, text, w=W, h=H):
+    """Render the "Follow/Subscribe" outro card (gradient scrim + badge + text) to a
+    transparent PNG, later time-gated onto the frame the same way the GTA 6 logo is.
+    """
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except ImportError:
+        sys.exit('"outro" needs Pillow - run: pip install pillow')
+
+    overlay = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+
+    # gradient scrim rising from the bottom so the card doesn't hard-cut over footage
+    scrim_h = int(h * 0.22)
+    for y in range(scrim_h):
+        t = y / scrim_h
+        alpha = int(235 * (t ** 1.4))
+        draw.line([(0, h - scrim_h + y), (w, h - scrim_h + y)], fill=(20, 14, 28, alpha))
+
+    # badge circle with a play-triangle, bottom-left
+    badge_d = int(w * 0.075)
+    bx, by = int(w * 0.045), h - int(h * 0.11)
+    draw.ellipse([bx, by, bx + badge_d, by + badge_d], fill=(212, 83, 126, 255))
+    cx, cy = bx + badge_d // 2, by + badge_d // 2
+    s = badge_d * 0.26
+    draw.polygon([(cx - s * 0.5, cy - s), (cx - s * 0.5, cy + s), (cx + s, cy)], fill=(75, 21, 40, 255))
+
+    # text shrinks to fit on one line rather than wrapping or overflowing
+    tx = bx + badge_d + int(w * 0.03)
+    max_w = w - tx - int(w * 0.04)
+    size = int(w * 0.052)
+    while size > 24:
+        try:
+            font = ImageFont.truetype("segoeuib.ttf", size)
+        except OSError:
+            font = ImageFont.load_default()
+            break
+        if draw.textbbox((0, 0), text, font=font)[2] <= max_w:
+            break
+        size -= 2
+
+    ty = by + badge_d // 2
+    bbox = draw.textbbox((0, 0), text, font=font)
+    th = bbox[3] - bbox[1]
+    draw.text((tx, ty - th // 2 - bbox[1]), text, font=font, fill=(255, 255, 255, 255))
+
+    overlay.save(path)
+
+
 def render_short(cfg, short):
     def opt(key, default):
         return short.get(key, cfg.get(key, default))
@@ -439,6 +494,11 @@ def render_short(cfg, short):
             "line_spacing=12:boxborderw=32:"
             f"x=(w-text_w)/2:y={end_y}:enable='gte(t,{duration - 4:.2f})'"
         )
+    outro_enabled = bool(opt("outro", False))
+    outro_text = opt("outro_text", "Follow/Subscribe if you like GTA")
+    outro_seconds = float(opt("outro_seconds", 1.5))
+    next_label = "[vpre]" if outro_enabled else "[vout]"
+
     logo_filter = None
     if logo_wins:
         video += "[vbase]"
@@ -446,9 +506,17 @@ def render_short(cfg, short):
         logo_y = int(opt("logo_y_px", 520))
         gate = "+".join(f"between(t,{a:.2f},{b:.2f})" for a, b in logo_wins)
         pre.append(f"[LOGO:v]scale={logo_w}:-1,format=rgba[logo]")
-        logo_filter = f"[vbase][logo]overlay=x=(W-w)/2:y={logo_y}:enable='{gate}'[vout]"
+        logo_filter = f"[vbase][logo]overlay=x=(W-w)/2:y={logo_y}:enable='{gate}'{next_label}"
     else:
-        video += "[vout]"
+        video += next_label
+
+    outro_png = work / "outro.png"
+    outro_filter = None
+    if outro_enabled:
+        make_outro_png(outro_png, outro_text)
+        outro_start = max(duration - outro_seconds, 0)
+        pre.append("[OUTRO:v]format=rgba[outro]")
+        outro_filter = f"[vpre][outro]overlay=0:0:enable='gte(t,{outro_start:.2f})'[vout]"
 
     duck = float(cfg.get("duck_ratio", 8))
     vo_gain = float(cfg.get("vo_gain", 1.6))
@@ -528,11 +596,16 @@ def render_short(cfg, short):
         if music_path:
             cmd += ["-stream_loop", "-1", "-i", str(music_path)]
         this_pre = pre
+        extra_idx = n_footage + len(segments) + (1 if music_path else 0)
         if logo_filter:
-            logo_idx = n_footage + len(segments) + (1 if music_path else 0)
-            this_pre = [p.replace("[LOGO:v]", f"[{logo_idx}:v]") for p in pre]
+            this_pre = [p.replace("[LOGO:v]", f"[{extra_idx}:v]") for p in this_pre]
             cmd += ["-loop", "1", "-t", f"{duration:.2f}", "-i", str(logo_path)]
-        video_steps = [video, logo_filter] if logo_filter else [video]
+            extra_idx += 1
+        if outro_filter:
+            this_pre = [p.replace("[OUTRO:v]", f"[{extra_idx}:v]") for p in this_pre]
+            cmd += ["-loop", "1", "-t", f"{duration:.2f}", "-i", str(outro_png)]
+            extra_idx += 1
+        video_steps = [video] + [f for f in (logo_filter, outro_filter) if f]
         cmd += ["-filter_complex", ";".join(this_pre + video_steps + audio + [audio_tail])]
         for m in maps:
             cmd += ["-map", m]

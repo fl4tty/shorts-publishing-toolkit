@@ -11,10 +11,12 @@ that use case.
 
 - **`pipeline/`** — `make_shorts.py` renders vertical MP4s from a source
   video plus a JSON config (one entry per short: source clip, start time,
-  duration, name-card text, optional montage/image-clip layouts).
-  `bleep_scan.py` finds swear words in a clip and saves bleep timestamps;
-  `tts.ps1` generates voiceover WAVs with Windows' built-in TTS voices. See
-  `pipeline/examples/*.json` for config shapes to copy from.
+  duration, name-card text, optional montage/image-clip layouts, and an
+  optional `"outro": true` follow/subscribe card over the last couple
+  seconds — needs `pip install pillow`). `bleep_scan.py` finds swear words
+  in a clip and saves bleep timestamps; `tts.ps1` generates voiceover WAVs
+  with Windows' built-in TTS voices. See `pipeline/examples/*.json` for
+  config shapes to copy from.
 - **`publish/`** — scripts that log into YouTube, TikTok, and Instagram and
   post a rendered short directly, plus `publish_all.py` to drive all three
   from one CLI. Each platform's setup is genuinely different (OAuth flow,
