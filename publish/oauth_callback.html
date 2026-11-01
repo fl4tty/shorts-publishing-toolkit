@@ -1,0 +1,47 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>ClipCityVice OAuth Callback</title>
+<style>
+  :root {
+    --bg: #faf9f7; --fg: #1c1a17; --muted: #6b6459; --accent: #c2410c; --line: #e6e1d8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #17140f; --fg: #f1ece3; --muted: #a79d8c; --accent: #f0975a; --line: #332c22; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #17140f; --fg: #f1ece3; --muted: #a79d8c; --accent: #f0975a; --line: #332c22; color-scheme: dark; }
+  body {
+    background: var(--bg); color: var(--fg); font-family: -apple-system, 'Inter', sans-serif; line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .wrap { max-width: 520px; margin: 0 auto; padding-block: 48px; }
+  h1 { font-size: 1.4rem; margin: 0 0 8px; }
+  .muted { color: var(--muted); font-size: 0.9rem; }
+  .box { border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin-top: 24px; }
+  .label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .code { font-family: ui-monospace, monospace; font-size: 1rem; word-break: break-all; background: var(--line); padding: 12px; border-radius: 6px; }
+  button { margin-top: 12px; background: var(--accent); color: white; border: none; padding: 10px 16px; border-radius: 6px; font-size: 0.9rem; cursor: pointer; }
+  button:active { opacity: 0.8; }
+  .ok { color: var(--accent); font-size: 0.85rem; margin-top: 8px; display: none; }
+</style>
+<div class="wrap">
+  <h1>Authorization complete</h1>
+  <p class="muted">Copy the code below and paste it back into the terminal running tiktok_auth.py.</p>
+  <div class="box">
+    <div class="label">Authorization code</div>
+    <div class="code" id="code">—</div>
+    <button onclick="copyCode()">Copy code</button>
+    <div class="ok" id="ok">Copied.</div>
+  </div>
+</div>
+<script>
+  const params = new URLSearchParams(location.search);
+  const code = params.get('code') || '(no code found in URL)';
+  document.getElementById('code').textContent = code;
+  function copyCode() {
+    try {
+      navigator.clipboard.writeText(code).then(() => {
+        document.getElementById('ok').style.display = 'block';
+      }).catch(() => {});
+    } catch (e) {}
+  }
+</script>

@@ -1,0 +1,133 @@
+{
+  "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+  "engine": "edge",
+  "edge_voice": "en-US-AvaMultilingualNeural",
+  "edge_rate": "+14%",
+  "edge_pitch": "+5Hz",
+  "vo_gain": 1.6,
+  "duck_ratio": 8,
+  "logo": "C:/Users/flatty/Projects/gta6/official/media/logo/gta6_logo_rgba.png",
+  "captions": false,
+  "shorts": [
+    {
+      "id": "t1_florida_man",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+      "hook": "GTA 6 is basically Florida Man: The Game",
+      "start": "00:00:35",
+      "duration": 30,
+      "vo": [
+        {
+          "at": 0,
+          "text": "Rockstar's very first GTA 6 trailer had a whole section that looks like a social media feed! Phone videos, live streams, people doing totally unhinged things on camera!"
+        },
+        {
+          "at": 17,
+          "text": "That's Rockstar telling us Leonida is basically Florida, and everyone is filming! Could your own chaos end up on the feed? I really hope so!"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "t1_bonnie_clyde",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+      "hook": "Where Jason & Lucia's story began",
+      "start": "00:00:56",
+      "duration": 30,
+      "vo": [
+        {
+          "at": 0,
+          "text": "This is the moment Trailer 1 turned into a love story with guns! Jason and Lucia, partners in crime, robbing stores together, Bonnie and Clyde style!"
+        },
+        {
+          "at": 19,
+          "text": "We know so much more about these two now. But this is where it all started! GTA 6 is out November 19th!"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "t2_brian",
+      "edge_voice": "en-US-JennyNeural",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+      "hook": "Brian was in Trailer 2 the whole time",
+      "start": "00:00:04",
+      "duration": 40,
+      "vo": [
+        {
+          "at": 0,
+          "text": "Wait, wait, wait! Remember Brian from the Extended Look? He's right here in Trailer 2! The retired criminal who looks out for Jason, just standing outside his place in the Keys like he owns all of Leonida!"
+        },
+        {
+          "at": 24,
+          "text": "Now watch how Jason moves around him! He totally owes this guy! And after that carousel story? No way Brian is as safe as he seems!"
+        }
+      ],
+      "bleeps": [],
+      "edge_rate": "+14%",
+      "edge_pitch": "+5Hz"
+    },
+    {
+      "id": "t2_lucia_out",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+      "hook": "The shot that sums up GTA 6",
+      "start": "00:00:46",
+      "duration": 32,
+      "vo": [
+        {
+          "at": 0,
+          "text": "Lucia's story starts in prison! Trailer 1 opened with her in an orange jumpsuit, and Trailer 2 shows us the day she finally walks out!"
+        },
+        {
+          "at": 20,
+          "text": "And who's waiting for her? Jason! That's the whole game in one shot. Two people with nothing, choosing each other!"
+        }
+      ],
+      "bleeps": [],
+      "outline_color": "FFFFFF"
+    },
+    {
+      "id": "lt_brians_marina",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Launch_Trailer.mp4",
+      "hook": "Did you catch Brian's name in the launch trailer?",
+      "start": "00:00:03",
+      "duration": 30,
+      "vo": [
+        {
+          "at": 0,
+          "text": "The launch trailer opens on a marina with Brian's name on the sign! Brian again! Rockstar keeps putting him front and center!"
+        },
+        {
+          "at": 16,
+          "text": "Jason on the phone, boats in the yard, an iguana stopping traffic! Leonida looks so alive, and we're less than a month away!"
+        }
+      ],
+      "bleeps": [],
+      "crop_x": 0.36
+    },
+    {
+      "id": "lt_countdown",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Launch_Trailer.mp4",
+      "hook": "GTA 6 is 19 days away",
+      "start": "00:01:02",
+      "duration": 27,
+      "vo": [
+        {
+          "at": 0,
+          "text": "This is how Rockstar ended the final trailer before launch!"
+        },
+        {
+          "at": 14,
+          "text": "November 19th! Nineteen days! Are you playing day one, or waiting for reviews? Tell me below!"
+        }
+      ],
+      "bleeps": [],
+      "layout": "fit",
+      "outline_color": "FFFFFF"
+    }
+  ],
+  "text_color": "7B68EE",
+  "box_opacity": 0,
+  "outline_color": "000000",
+  "outline_width": 6,
+  "text_shadow": true
+}

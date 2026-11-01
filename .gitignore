@@ -1,0 +1,20 @@
+# secrets / tokens — never commit real credentials
+.env
+publish/.env
+publish/client_secret.json
+publish/token_youtube.json
+publish/posting_checklist.json
+
+# generated media / cache
+__pycache__/
+*.pyc
+pipeline/output/
+pipeline/vo/
+pipeline/sheets/
+*.mp4
+*.wav
+*.mp3
+
+# editor / OS cruft
+.DS_Store
+Thumbs.db

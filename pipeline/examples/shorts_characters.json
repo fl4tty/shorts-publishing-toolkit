@@ -1,0 +1,444 @@
+{
+  "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+  "engine": "edge",
+  "edge_voice": "en-US-AvaMultilingualNeural",
+  "edge_rate": "+14%",
+  "edge_pitch": "+5Hz",
+  "vo_gain": 1.6,
+  "duck_ratio": 8,
+  "logo": "C:/Users/flatty/Projects/gta6/official/media/logo/gta6_logo_rgba.png",
+  "captions": false,
+  "text_color": "7B68EE",
+  "box_opacity": 0,
+  "outline_color": "000000",
+  "outline_width": 6,
+  "text_shadow": true,
+  "sheets": [
+    {
+      "name": "t1",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+      "start": 0,
+      "end": 95,
+      "step": 1
+    },
+    {
+      "name": "t2",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+      "start": 0,
+      "end": 170,
+      "step": 1
+    },
+    {
+      "name": "lt",
+      "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Launch_Trailer.mp4",
+      "start": 0,
+      "end": 95,
+      "step": 1
+    },
+    {
+      "name": "el_raymond",
+      "start": "00:02:15",
+      "end": "00:04:15",
+      "step": 3,
+      "fast": true
+    },
+    {
+      "name": "el_raid",
+      "start": "00:04:00",
+      "end": "00:06:10",
+      "step": 3,
+      "fast": true
+    },
+    {
+      "name": "el_brian",
+      "start": "00:10:00",
+      "end": "00:12:40",
+      "step": 3,
+      "fast": true
+    },
+    {
+      "name": "el_raul",
+      "start": "00:12:30",
+      "end": "00:16:50",
+      "step": 4,
+      "fast": true
+    },
+    {
+      "name": "el_streamer",
+      "start": "00:17:50",
+      "end": "00:18:50",
+      "step": 2,
+      "fast": true
+    },
+    {
+      "name": "el_megamundo",
+      "start": "00:19:00",
+      "end": "00:22:40",
+      "step": 3,
+      "fast": true
+    }
+  ],
+  "shorts": [
+    {
+      "id": "characters",
+      "hook": "Every GTA 6 character so far",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "Jason Duval",
+          "role": "Lead - ex-soldier living in the Keys",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:00:27",
+          "duration": 3,
+          "crop_x": 0.8
+        },
+        {
+          "name": "Lucia Caminos",
+          "role": "Lead - fresh out of prison",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:01:03.2",
+          "duration": 2.8,
+          "crop_x": 0.42
+        },
+        {
+          "name": "Brian",
+          "role": "Jason's old friend, a retired criminal",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:00:14",
+          "duration": 3,
+          "crop_x": 0.58
+        },
+        {
+          "name": "Lori",
+          "role": "Brian's wife",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:10:51",
+          "duration": 2.5,
+          "crop_x": 0.82
+        },
+        {
+          "name": "Raul Bautista",
+          "role": "Bank robber and mentor",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:13:42",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Raymond",
+          "role": "Runs the stash house",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:03:06",
+          "duration": 2.5,
+          "crop_x": 0.68
+        },
+        {
+          "name": "Val",
+          "role": "The fixer",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:19:18",
+          "duration": 2.5,
+          "crop_x": 0.3
+        },
+        {
+          "name": "Andrés de León",
+          "role": "Celebrity client",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:21:09",
+          "duration": 2.5,
+          "crop_x": 0.08
+        },
+        {
+          "name": "Petra Navarro",
+          "role": "Megamundo COO",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:21:21",
+          "duration": 2.5,
+          "crop_x": 0.53
+        },
+        {
+          "name": "The Streamer",
+          "role": "Doing a trunk challenge mid police chase",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:18:20",
+          "duration": 3,
+          "crop_x": 0.72
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+          "start": "00:01:13.5",
+          "duration": 6.5,
+          "crop_x": 0.4
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Every GTA 6 character Rockstar has shown us! How many do you know?"
+        },
+        {
+          "at": 28.4,
+          "text": "Who's your favorite? Tell me below! GTA 6 is out November 19th!"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "action_violence",
+      "hook": "GTA 6 gets violent fast",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "The Home Invasion",
+          "role": "Masked, armed, and not here to talk",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:01:14",
+          "duration": 4.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Clearing the Room",
+          "role": "Rifle up, moving room to room",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:05:24.5",
+          "duration": 4.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Taking Fire",
+          "role": "Shooting it out with the cops mid-chase",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+          "start": "00:14:06",
+          "duration": 4,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Open Fire",
+          "role": "When things go loud in Leonida",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Launch_Trailer.mp4",
+          "start": "00:01:12.5",
+          "duration": 4.5,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Masked robberies, room clearings, open gunfights! GTA 6 doesn't pull punches."
+        },
+        {
+          "at": 10,
+          "text": "This one's rated M for a reason. Which gunfight got your heart racing?"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "love_story",
+      "hook": "GTA 6 has a real love story",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "The Date",
+          "role": "Drinks at sunset",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:01:19.5",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Just the Two of Them",
+          "role": "Dock, sunset, nowhere to be",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:01:20.5",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Windswept",
+          "role": "Top down, nowhere in particular",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Launch_Trailer.mp4",
+          "start": "00:00:25.5",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:01:28",
+          "duration": 2.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Stolen Moment",
+          "role": "Just them, nothing else",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Launch_Trailer.mp4",
+          "start": "00:00:35.5",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:01:37.5",
+          "duration": 3.5,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Forget the chaos for a second. Jason and Lucia have real chemistry - drinks, dancing, long drives together."
+        },
+        {
+          "at": 10,
+          "text": "GTA 6 isn't just crime and car chases. There's a whole love story in here too."
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "npc_behavior",
+      "hook": "GTA 6 NPCs are always watching",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+          "start": "00:00:22",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+          "start": "00:00:41.3",
+          "duration": 1.8,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+          "start": "00:00:46.9",
+          "duration": 1.0,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Local Wildlife, Too",
+          "role": "Just a regular gator at the gas station",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+          "start": "00:00:47.8",
+          "duration": 2.2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Even the News Shows Up",
+          "role": "Weazel News reports on everything",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+          "start": "00:01:06.5",
+          "duration": 4,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+          "start": "00:00:50.0",
+          "duration": 3.5,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Every random moment in GTA 6 gets posted, commented on, or put on the news by somebody."
+        },
+        {
+          "at": 9,
+          "text": "This isn't just a map full of people. It's a map full of people who notice everything you do."
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "cars_of_leonida",
+      "hook": "GTA 6's car culture is unmatched",
+      "hook_seconds": 4,
+      "music": "C:/Users/flatty/Projects/gta6/shorts_kit/music/Brain_Dance.mp3",
+      "music_start": 60,
+      "music_gain": 0.32,
+      "music_duck_ratio": 2,
+      "clips": [
+        {
+          "name": "Towing Into The Keys",
+          "role": "Even the boats come by truck",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Launch_Trailer.mp4",
+          "start": "00:00:02.7",
+          "duration": 1.6,
+          "crop_x": 0.3,
+          "gain": 0
+        },
+        {
+          "name": "Wyman's Auto Salvage",
+          "role": "Parts bought and sold",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_01.jpg",
+          "duration": 2.4
+        },
+        {
+          "name": "Cruising The Block",
+          "role": "Lowriders, muscle cars, chrome for days",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_1.mp4",
+          "start": "00:00:27.5",
+          "duration": 1.3,
+          "crop_x": 0.6,
+          "gain": 0
+        },
+        {
+          "name": "Rideout Customs",
+          "role": "Gold paint, bigger wheels",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_RIDEOUT_CUSTOMS_01.jpg",
+          "duration": 2.3
+        },
+        {
+          "name": "Checking It Out",
+          "role": "Jason's got an eye for a nice ride",
+          "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_Trailer_2.mp4",
+          "start": "00:00:29.0",
+          "duration": 3.3,
+          "crop_x": 0.65,
+          "gain": 0
+        },
+        {
+          "name": "Grotti Cheetah",
+          "role": "Vice City never looked so good",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.4
+        },
+        {
+          "name": "Off-Road Ready",
+          "role": "Not every road in Leonida is paved",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_VAPID_BUGGY_01.jpg",
+          "duration": 2.3
+        },
+        {
+          "name": "Vintage Vice City Pack",
+          "role": "Classic cruiser, neon nights",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/vintage_vice_city/VINTAGE_VICE_CITY_PACK_VAPID_STANIER_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.4
+        },
+        {
+          "name": "Built, Not Bought",
+          "role": "This is the Sirius",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_02.jpg",
+          "duration": 2.3
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "The car culture in GTA 6 might be the deepest Rockstar's ever built."
+        },
+        {
+          "at": 10.5,
+          "text": "Salvage yards, lowrider shows, muscle cars, supercars. Leonida's got a ride for everyone."
+        }
+      ],
+      "bleeps": []
+    }
+  ]
+}

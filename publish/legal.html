@@ -1,0 +1,66 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>ClipCityVice Shorts Publisher — Legal</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --fg: #1c1a17;
+    --muted: #6b6459;
+    --accent: #c2410c;
+    --line: #e6e1d8;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17140f; --fg: #f1ece3; --muted: #a79d8c; --accent: #f0975a; --line: #332c22;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --fg: #f1ece3; --muted: #a79d8c; --accent: #f0975a; --line: #332c22;
+    color-scheme: dark;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding-block: 48px; }
+  h1 { font-family: var(--font-display); font-size: 2rem; margin: 0 0 4px; text-wrap: balance; }
+  h2 { font-family: var(--font-display); font-size: 1.3rem; margin: 40px 0 12px; border-top: 1px solid var(--line); padding-top: 32px; }
+  .sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 40px; }
+  p, li { color: var(--fg); }
+  ul { padding-left: 1.2em; }
+  .nav { display: flex; gap: 16px; font-size: 0.85rem; margin-bottom: 32px; }
+  .nav a { color: var(--accent); text-decoration: none; }
+  .nav a:hover { text-decoration: underline; }
+  strong { color: var(--fg); }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz@0,9..144;1,9..144&family=Inter:wght@400;500;600&display=swap">
+
+<div class="wrap">
+  <h1>ClipCityVice Shorts Publisher</h1>
+  <p class="sub">Terms of Service &amp; Privacy Policy — last updated October 31, 2026</p>
+  <div class="nav"><a href="#terms">Terms of Service</a><a href="#privacy">Privacy Policy</a></div>
+
+  <h2 id="terms">Terms of Service</h2>
+  <p>ClipCityVice Shorts Publisher is a personal automation tool built and operated by a single individual creator to publish their own short-form video content, created from their own footage and commentary, to their own authorized social media accounts (including TikTok).</p>
+  <ul>
+    <li>The tool runs locally on the operator's own computer. It is not a public service, has no public signup, and is not distributed to or used by any third party.</li>
+    <li>It only posts content that the operator has created and selected, to accounts the operator has authorized through TikTok's own OAuth login flow.</li>
+    <li>By authorizing this app via TikTok, the operator agrees to be bound by TikTok's own Developer Terms of Service, which govern use of the TikTok API.</li>
+    <li>The operator may revoke this app's access to their TikTok account at any time from their TikTok account settings.</li>
+  </ul>
+
+  <h2 id="privacy">Privacy Policy</h2>
+  <p>This tool does not collect, store, sell, or share personal data belonging to anyone other than its operator, and does not serve any user other than its operator.</p>
+  <ul>
+    <li><strong>What is stored:</strong> an OAuth access token and refresh token issued by TikTok for the operator's own account, saved locally on the operator's own computer in a configuration file. These are used only to authorize video uploads to that same account.</li>
+    <li><strong>What is not collected:</strong> no analytics, no third-party data sharing, no advertising identifiers, and no data about any TikTok viewer, follower, or other user.</li>
+    <li><strong>Data retention:</strong> the stored tokens remain only on the operator's local machine and are deleted if the operator removes the local configuration file or revokes access via TikTok.</li>
+    <li><strong>Contact:</strong> clipcityvice@gmail.com</li>
+  </ul>
+</div>

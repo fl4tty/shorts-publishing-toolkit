@@ -1,0 +1,132 @@
+{
+  "defaults": {
+    "youtube_tags": ["GTA 6", "GTA VI", "Grand Theft Auto 6", "GTA 6 trailer breakdown", "GTA 6 release date", "GTA 6 gameplay", "GTA 6 news", "Rockstar Games", "Vice City", "Jason and Lucia", "GTA 6 countdown", "GTA 6 theory"],
+    "youtube_hashtags": ["#GTA6", "#Shorts", "#GTAVI"],
+    "tiktok_core_tags": ["#GTA6", "#GTAVI", "#ClipCityVice"],
+    "instagram_core_tags": ["#GTA6", "#GTAVI", "#GrandTheftAuto6", "#RockstarGames", "#ViceCity", "#GTA6News", "#GamingNews", "#ClipCityVice"],
+    "credit_footage": "Footage: Rockstar Games. Commentary and edit are my own.",
+    "credit_images": "Images: Rockstar Games. Commentary and edit are my own. Music: \"Brain Dance\" by Kevin MacLeod (incompetech.com) — CC BY 4.0."
+  },
+  "videos": [
+    {"id": "characters", "file": "characters.mp4", "date": "2026-10-31",
+     "youtube": {"title": "Every GTA 6 character so far #Shorts", "description": "Jason, Lucia, Brian, Raul, Val, and everyone else Rockstar has shown us across every trailer and the Extended Look. Who's your favorite?"},
+     "tiktok": {"caption": "Every GTA 6 character so far 👀 How many do you know? Who's your favorite — tell me below.", "theme_tags": ["#GTA6Theory"]},
+     "instagram": {"caption": "Jason, Lucia, Brian, Raul, Val — every GTA 6 character Rockstar's shown us so far. Who's your favorite? 👇", "theme_tags": ["#GTA6Hype", "#JasonAndLucia"]}},
+
+    {"id": "t1_florida_man", "file": "t1_florida_man.mp4", "date": "2026-11-01",
+     "youtube": {"title": "GTA 6 is basically Florida Man: The Game #Shorts", "description": "Trailer 1's social media section told us everything about Leonida. Would you want your chaos on the in-game feed?"},
+     "tiktok": {"caption": "GTA 6 is basically Florida Man: The Game 💀 Would you want YOUR chaos on the feed?", "theme_tags": ["#ViceCity"]},
+     "instagram": {"caption": "Trailer 1's social media montage said everything about Leonida without saying a word. Would your chaos make the in-game feed? 👇", "theme_tags": ["#LeonidaKeys", "#GTA6Trailer"]}},
+
+    {"id": "02_raid_call", "file": "02_raid_call.mp4", "date": "2026-11-02",
+     "youtube": {"title": "He got set up in 10 seconds 😳 GTA 6 #Shorts", "description": "One phone call, and the whole stash house falls apart. GTA 6's chain-reaction storytelling looks wild."},
+     "tiktok": {"caption": "He got set up in 10 seconds 😳 One phone call and it's over.", "theme_tags": ["#ViceCity"]},
+     "instagram": {"caption": "One phone call. The whole stash house falls apart. GTA 6's chain-reaction storytelling already looks unreal.", "theme_tags": ["#GTA6Trailer", "#LeonidaKeys"]}},
+
+    {"id": "cars_of_leonida", "file": "cars_of_leonida.mp4", "date": "2026-11-03",
+     "youtube": {"title": "GTA 6's car culture is unmatched #Shorts", "description": "The car culture in GTA 6 might be the deepest Rockstar's ever built. Salvage yards, lowrider shows, muscle cars, supercars — Leonida's got a ride for everyone."},
+     "tiktok": {"caption": "The car culture in GTA 6 might be the deepest Rockstar's ever built 🚗 Which ride are you taking?", "theme_tags": ["#GTA6Cars"]},
+     "instagram": {"caption": "Salvage yards, lowrider shows, muscle cars, supercars — Leonida's got a ride for everyone. This might be Rockstar's deepest car culture yet.", "theme_tags": ["#GTA6Cars", "#LeonidaKeys"]}},
+
+    {"id": "t1_bonnie_clyde", "file": "t1_bonnie_clyde.mp4", "date": "2026-11-04",
+     "youtube": {"title": "Where Jason & Lucia's story began #Shorts", "description": "The Trailer 1 moment that turned GTA 6 into a crime love story. Out November 19."},
+     "tiktok": {"caption": "Where Jason & Lucia's story actually began. GTA 6 — out November 19.", "theme_tags": ["#JasonAndLucia"]},
+     "instagram": {"caption": "The Trailer 1 moment that turned GTA 6 into a full-blown crime love story. Jason and Lucia, out November 19.", "theme_tags": ["#JasonAndLucia", "#GTA6Trailer"]}},
+
+    {"id": "ultimate_edition_bonuses", "file": "ultimate_edition_bonuses.mp4", "date": "2026-11-05",
+     "youtube": {"title": "What GTA 6 Ultimate Edition gets you #Shorts", "description": "A bonus Cheetah, a Squalo, custom weapons, and a whole car collection from Wyman's. Is the Ultimate Edition worth it?", "credit": "images"},
+     "tiktok": {"caption": "What you actually get with GTA 6 Ultimate Edition 👀 Worth the upgrade?", "theme_tags": ["#RockstarGames"]},
+     "instagram": {"caption": "A bonus Cheetah, a Squalo, custom weapons, and a whole car collection from Wyman's. Is Ultimate Edition worth it?", "theme_tags": ["#GTA6Hype"]}},
+
+    {"id": "action_violence", "file": "action_violence.mp4", "date": "2026-11-06",
+     "youtube": {"title": "GTA 6 doesn't pull punches #Shorts", "description": "Masked robberies, room clearings, open gunfights — GTA 6 doesn't pull punches. This one's rated M for a reason. Which gunfight got your heart racing?"},
+     "tiktok": {"caption": "GTA 6 doesn't pull punches 😳 Rated M for a reason. Which gunfight got your heart racing?", "theme_tags": ["#GTA6Theory"]},
+     "instagram": {"caption": "Masked robberies, room clearings, open gunfights — GTA 6 is rated M for a reason. Which moment got your heart racing?", "theme_tags": ["#GTA6Hype"]}},
+
+    {"id": "npc_behavior", "file": "npc_behavior.mp4", "date": "2026-11-07",
+     "youtube": {"title": "GTA 6 NPCs are always watching #Shorts", "description": "Every random moment in GTA 6 gets posted, commented on, or put on the news by somebody. This isn't just a map full of people — it's a map full of people who notice everything you do."},
+     "tiktok": {"caption": "GTA 6 NPCs are always watching 👀 Every random moment ends up online or on the news.", "theme_tags": ["#ViceCity"]},
+     "instagram": {"caption": "This isn't just a map full of people — it's a map full of people who notice everything you do. GTA 6's NPCs don't miss a thing.", "theme_tags": ["#LeonidaKeys"]}},
+
+    {"id": "t2_lucia_out", "file": "t2_lucia_out.mp4", "date": "2026-11-08",
+     "youtube": {"title": "The shot that sums up GTA 6 #Shorts", "description": "Lucia walks out of prison, and Jason is waiting. The whole game in one shot."},
+     "tiktok": {"caption": "The one shot that sums up all of GTA 6. Lucia walks out, and Jason's waiting.", "theme_tags": ["#JasonAndLucia"]},
+     "instagram": {"caption": "Lucia walks out of prison. Jason is waiting. The whole game, in one shot.", "theme_tags": ["#JasonAndLucia", "#GTA6Trailer"]}},
+
+    {"id": "03_professional", "file": "03_professional.mp4", "date": "2026-11-09",
+     "youtube": {"title": "The GTA 6 mentor we didn't see coming #Shorts", "description": "Raul's \"test\" for Jason and Lucia turns into a full getaway. Lester-meets-Michael energy?"},
+     "tiktok": {"caption": "The GTA 6 mentor nobody saw coming. Raul's \"test\" turns into a full getaway.", "theme_tags": ["#GTA6Theory"]},
+     "instagram": {"caption": "Raul's \"test\" for Jason and Lucia turns into a full getaway. Lester-meets-Michael energy or something new?", "theme_tags": ["#LeonidaKeys"]}},
+
+    {"id": "main_characters", "file": "main_characters.mp4", "date": "2026-11-10",
+     "youtube": {"title": "GTA 6's 4 main faces #Shorts", "description": "Jason, Lucia, Brian, and Raul — four completely different paths leading into one wild story. Who are you most excited to play as?", "credit": "images"},
+     "tiktok": {"caption": "GTA 6's 4 main faces. Who are you most hyped to play as?", "theme_tags": ["#JasonAndLucia"]},
+     "instagram": {"caption": "Jason, Lucia, Brian, and Raul — four completely different paths leading into one wild story. Who are you most excited to play as?", "theme_tags": ["#JasonAndLucia"]}},
+
+    {"id": "love_story", "file": "love_story.mp4", "date": "2026-11-11",
+     "youtube": {"title": "GTA 6 has a real love story #Shorts", "description": "Forget the chaos for a second — Jason and Lucia have real chemistry. Drinks, dancing, long drives together. GTA 6 isn't just crime and car chases."},
+     "tiktok": {"caption": "Forget the chaos for a second. Jason and Lucia have real chemistry in GTA 6.", "theme_tags": ["#JasonAndLucia"]},
+     "instagram": {"caption": "Drinks, dancing, long drives together — GTA 6 isn't just crime and car chases. There's a whole love story in here too.", "theme_tags": ["#JasonAndLucia"]}},
+
+    {"id": "lt_brians_marina", "file": "lt_brians_marina.mp4", "date": "2026-11-12",
+     "youtube": {"title": "Did you catch Brian's name in the GTA 6 launch trailer? #Shorts", "description": "Brian's Marina opens the launch trailer. Rockstar keeps putting him front and center. Why?"},
+     "tiktok": {"caption": "Did you catch Brian's name in the GTA 6 launch trailer? Rockstar keeps putting him front and center.", "theme_tags": ["#GTA6Theory"]},
+     "instagram": {"caption": "Brian's Marina opens the GTA 6 launch trailer. Rockstar keeps putting him front and center — why?", "theme_tags": ["#GTA6Trailer"]}},
+
+    {"id": "04_trunk_challenge", "file": "04_trunk_challenge.mp4", "date": "2026-11-13",
+     "youtube": {"title": "GTA 6 is roasting streamers 💀 #Shorts", "description": "Rockstar's satire is back — and influencer culture is the target."},
+     "tiktok": {"caption": "GTA 6 is roasting streamers 💀 Rockstar's satire is back.", "theme_tags": ["#RockstarGames"]},
+     "instagram": {"caption": "Rockstar's satire is back — and this time, influencer culture is the target.", "theme_tags": ["#GTA6Hype"]}},
+
+    {"id": "vintage_vice_city_pack", "file": "vintage_vice_city_pack.mp4", "date": "2026-11-14",
+     "youtube": {"title": "The other GTA 6 pre-order bonus #Shorts", "description": "Retro outfits, a classic '55 Vapid Stanier, and a matching weapon pattern — the Vintage Vice City Pack is a totally different vibe from the Ultimate Edition.", "credit": "images"},
+     "tiktok": {"caption": "The OTHER GTA 6 pre-order bonus. Retro outfits, a classic '55, a matching weapon pattern.", "theme_tags": ["#ViceCity"]},
+     "instagram": {"caption": "Retro outfits, a classic '55 Vapid Stanier, and a matching weapon pattern — the Vintage Vice City Pack is a totally different vibe from Ultimate Edition.", "theme_tags": ["#GTA6Hype"]}},
+
+    {"id": "leonida_locations", "file": "leonida_locations.mp4", "date": "2026-11-15",
+     "youtube": {"title": "Every GTA 6 location so far #Shorts", "description": "Vice City, the Keys, Port Gellhorn, Ambrosia, Grassrivers, Mount Kalaga — every part of Leonida Rockstar has shown us. Which one are you landing in first?", "credit": "images"},
+     "tiktok": {"caption": "Every GTA 6 location so far. Which one are you landing in first?", "theme_tags": ["#ViceCity"]},
+     "instagram": {"caption": "Vice City, the Keys, Port Gellhorn, Ambrosia, Grassrivers, Mount Kalaga — every part of Leonida Rockstar's shown us. Where are you landing first?", "theme_tags": ["#LeonidaKeys"]}},
+
+    {"id": "t2_brian", "file": "t2_brian.mp4", "date": "2026-11-16",
+     "youtube": {"title": "Brian was in GTA 6 Trailer 2 the whole time #Shorts", "description": "The retired criminal from the Extended Look was hiding in plain sight. Can Jason trust him?"},
+     "tiktok": {"caption": "Brian was in GTA 6 Trailer 2 the whole time. Can Jason actually trust him?", "theme_tags": ["#GTA6Theory"]},
+     "instagram": {"caption": "The retired criminal from the Extended Look was hiding in plain sight in Trailer 2. Can Jason trust him?", "theme_tags": ["#JasonAndLucia"]}},
+
+    {"id": "supporting_cast", "file": "supporting_cast.mp4", "date": "2026-11-16",
+     "youtube": {"title": "4 more GTA 6 characters you need to know #Shorts", "description": "Boobie Ike, Cal Hampton, Dre'Quan Priest, and Real Dimez — the supporting cast Rockstar's quietly built out around Jason and Lucia. Who's your favorite?", "credit": "images"},
+     "tiktok": {"caption": "4 more GTA 6 characters you need to know. Who's your favorite?", "theme_tags": ["#JasonAndLucia"]},
+     "instagram": {"caption": "Boobie Ike, Cal Hampton, Dre'Quan Priest, and Real Dimez — the supporting cast Rockstar's quietly built around Jason and Lucia.", "theme_tags": ["#JasonAndLucia"]}},
+
+    {"id": "jason_and_lucia_art", "file": "jason_and_lucia_art.mp4", "date": "2026-11-17",
+     "youtube": {"title": "Every Jason & Lucia key art piece #Shorts", "description": "Rockstar's released a ton of official key art for Jason and Lucia. Bonnie and Clyde energy in every single one — which piece is your favorite?", "credit": "images"},
+     "tiktok": {"caption": "Every official Jason & Lucia key art piece. Bonnie and Clyde energy in every one.", "theme_tags": ["#JasonAndLucia"]},
+     "instagram": {"caption": "Rockstar's released a ton of official key art for Jason and Lucia — Bonnie and Clyde energy in every piece. Which one's your favorite?", "theme_tags": ["#JasonAndLucia", "#LeonidaKeys"]}},
+
+    {"id": "leonida_postcards", "file": "leonida_postcards.mp4", "date": "2026-11-17",
+     "youtube": {"title": "GTA 6 locations as postcards #Shorts", "description": "Rockstar turned every GTA 6 location into its own postcard. Which one would you actually send home from your Leonida vacation?", "credit": "images"},
+     "tiktok": {"caption": "GTA 6 locations, as postcards. Which one would you send home?", "theme_tags": ["#ViceCity"]},
+     "instagram": {"caption": "Rockstar turned every GTA 6 location into its own postcard. Which one would you send home from your Leonida vacation?", "theme_tags": ["#LeonidaKeys"]}},
+
+    {"id": "ultimate_edition_bonuses_part2", "file": "ultimate_edition_bonuses_part2.mp4", "date": "2026-11-18",
+     "youtube": {"title": "GTA 6 Ultimate Edition pt. 2 #Shorts", "description": "Rockstar wasn't done — a tattoo shop, two outfit stores, an off-road garage, even illegal goods from a gang raid. Which bonus are you hitting first?", "credit": "images"},
+     "tiktok": {"caption": "GTA 6 Ultimate Edition pt. 2. A tattoo shop, outfit stores, an off-road garage. Which one first?", "theme_tags": ["#RockstarGames"]},
+     "instagram": {"caption": "Rockstar wasn't done — a tattoo shop, two outfit stores, an off-road garage, even goods from a gang raid. Which bonus are you hitting first?", "theme_tags": ["#GTA6Hype"]}},
+
+    {"id": "lt_countdown", "file": "lt_countdown.mp4", "date": "2026-11-18",
+     "note": "Day count is date-sensitive — update shorts_trailers.json and re-render (tts + render) before this post goes out.",
+     "youtube": {"title": "GTA 6 is 1 day away #Shorts", "description": "November 19. Day one or waiting for reviews? Comment below."},
+     "tiktok": {"caption": "GTA 6 is almost here. Day one, or waiting for reviews?", "theme_tags": ["#GTA6Countdown"]},
+     "instagram": {"caption": "November 19 is almost here. Day one or waiting for reviews? Comment below.", "theme_tags": ["#GTA6Hype"]}},
+
+    {"id": "01_carousel", "file": "01_carousel.mp4", "date": "2026-11-19",
+     "youtube": {"title": "This GTA 6 scene is foreshadowing EVERYTHING #Shorts", "description": "Brian's carousel story might be the biggest hint yet about how Jason and Lucia's story ends. Does Jason jump, or stay on the ride? Theory in the comments 👇"},
+     "tiktok": {"caption": "This GTA 6 scene foreshadows EVERYTHING. Does Jason jump, or stay on the ride?", "theme_tags": ["#GTA6Theory"]},
+     "instagram": {"caption": "Brian's carousel story might be the biggest hint yet at how Jason and Lucia's story ends. Does Jason jump, or stay on the ride? Theory below. 👇", "theme_tags": ["#GTA6Trailer", "#JasonAndLucia"]}},
+
+    {"id": "05_glory_days", "file": "05_glory_days.mp4", "date": "2026-11-19",
+     "youtube": {"title": "The quote that ends the GTA 6 extended look #Shorts", "description": "\"Glory days\" — might be the theme of the whole game. IT'S OUT. GTA 6 is live."},
+     "tiktok": {"caption": "\"Glory days.\" The line that ends the Extended Look — and GTA 6 is finally out.", "theme_tags": ["#GTA6Theory"]},
+     "instagram": {"caption": "\"Glory days\" — might be the theme of the whole game. GTA 6 is officially out. 🎉", "theme_tags": ["#GTA6Trailer", "#GTA6Hype"]}}
+  ]
+}

@@ -1,0 +1,616 @@
+{
+  "source": "C:/Users/flatty/Projects/gta6/official/GTAVI_An_Extended_Look.mp4",
+  "engine": "edge",
+  "edge_voice": "en-US-AvaMultilingualNeural",
+  "edge_rate": "+14%",
+  "edge_pitch": "+5Hz",
+  "vo_gain": 1.6,
+  "duck_ratio": 8,
+  "music": "C:/Users/flatty/Projects/gta6/shorts_kit/music/Brain_Dance.mp3",
+  "music_gain": 0.22,
+  "music_duck_ratio": 4,
+  "text_color": "7B68EE",
+  "box_opacity": 0,
+  "outline_color": "000000",
+  "outline_width": 6,
+  "text_shadow": true,
+  "name_y": 1500,
+  "logo": "C:/Users/flatty/Projects/gta6/official/media/logo/gta6_logo_rgba.png",
+  "captions": false,
+  "shorts": [
+    {
+      "id": "leonida_locations",
+      "hook": "Every GTA 6 location so far",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "Vice City",
+          "role": "The neon heart of Leonida",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Vice City/Vice_City_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Vice City/Vice_City_05.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Leonida Keys",
+          "role": "Where Jason lays low",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Leonida Keys/Leonida_Keys_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Leonida Keys/Leonida_Keys_04.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Port Gellhorn",
+          "role": "A faded boardwalk town",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Port Gellhorn/Port_Gellhorn_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Port Gellhorn/Port_Gellhorn_04.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Ambrosia",
+          "role": "Overgrown and abandoned",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Ambrosia/Ambrosia_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Ambrosia/Ambrosia_04.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Grassrivers",
+          "role": "Deep in the Everglades",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Grassrivers/Grassrivers_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Grassrivers/Grassrivers_04.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Mount Kalaga",
+          "role": "Leonida's wild backcountry",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Mount Kalaga National Park/Mount_Kalaga_National_Park_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/Places/Mount Kalaga National Park/Mount_Kalaga_National_Park_04.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Rockstar has shown us six parts of Leonida so far, and every single one looks completely different!"
+        },
+        {
+          "at": 23,
+          "text": "Which location are you most hyped to explore? GTA 6 launches November 19th!"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "supporting_cast",
+      "hook": "4 more GTA 6 characters",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "Boobie Ike",
+          "role": "Vice City mogul - clubs, real estate, a record label",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Boobie Ike/Boobie_Ike_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Boobie Ike/Boobie_Ike_03.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Cal Hampton",
+          "role": "Jason's conspiracy-minded associate",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Cal Hampton/Cal_Hampton_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Cal Hampton/Cal_Hampton_03.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Dre'Quan Priest",
+          "role": "Street hustler turned music exec",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/DreQuan Priest/DreQuan_Priest_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/DreQuan Priest/DreQuan_Priest_03.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Real Dimez",
+          "role": "Viral rap duo - Bae-Luxe and Roxy",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Real Dimez/Real_Dimez_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Real Dimez/Real_Dimez_03.jpg",
+          "duration": 4.5,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Rockstar's shown us way more than Jason and Lucia! Here's four more names from Leonida's supporting cast!"
+        },
+        {
+          "at": 16,
+          "text": "Boobie Ike, Cal Hampton, Dre'Quan Priest, and Real Dimez. Which one do you think matters most to the story?"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "ultimate_edition_bonuses",
+      "hook": "What GTA 6 Ultimate Edition gets you",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "'95 Grotti Cheetah",
+          "role": "Ultimate Edition bonus car",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_GROTTI_CHEETAH_03.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Squalo",
+          "role": "Pre-order bonus boat",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_SQUALO_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_SQUALO_03.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Vapid Buggy",
+          "role": "Off-road bonus vehicle",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_VAPID_BUGGY_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_VAPID_BUGGY_03.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Morgan Revolvers",
+          "role": "Bonus weapon variant",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_02.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Rideout Customs",
+          "role": "Exclusive vehicle customization",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_RIDEOUT_CUSTOMS_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_RIDEOUT_CUSTOMS_02.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Wyman Car Collection",
+          "role": "Rare cars for your garage",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_03.jpg",
+          "duration": 2,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Pre-order the GTA 6 Ultimate Edition and you get way more than a few extra bucks of in-game cash!"
+        },
+        {
+          "at": 17,
+          "text": "A bonus Cheetah, a Squalo, custom weapons, and a whole collection from Wyman's. Worth the upgrade?"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "vintage_vice_city_pack",
+      "hook": "The other GTA 6 pre-order pack",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "Vintage Vice City Pack",
+          "role": "A pre-order bonus with an 80s throwback",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/vintage_vice_city/VINTAGE_VICE_CITY_PACK_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/vintage_vice_city/VINTAGE_VICE_CITY_PACK_02.jpg",
+          "duration": 2.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Exclusive Looks",
+          "role": "Retro outfits only in this pack",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/vintage_vice_city/VINTAGE_VICE_CITY_PACK_EXCLUSIVE_LOOKS_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/vintage_vice_city/VINTAGE_VICE_CITY_PACK_EXCLUSIVE_LOOKS_03.jpg",
+          "duration": 2.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "'55 Vapid Stanier",
+          "role": "A classic ride, Vice City style",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/vintage_vice_city/VINTAGE_VICE_CITY_PACK_VAPID_STANIER_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/vintage_vice_city/VINTAGE_VICE_CITY_PACK_VAPID_STANIER_03.jpg",
+          "duration": 2.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Weapon Pattern",
+          "role": "A retro finish for your arsenal",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/vintage_vice_city/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Pre-ordering also gets you the Vintage Vice City Pack, a totally different vibe from the Ultimate Edition."
+        },
+        {
+          "at": 13,
+          "text": "Retro outfits, a classic Stanier, even a matching weapon pattern. Which pre-order bonus wins?"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "main_characters",
+      "hook": "GTA 6's 4 main faces",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "Jason Duval",
+          "role": "Lead - ex-soldier living in the Keys",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Jason Duval/Jason_Duval_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Jason Duval/Jason_Duval_04.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Lucia Caminos",
+          "role": "Lead - fresh out of prison",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Lucia Caminos/Lucia_Caminos_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Lucia Caminos/Lucia_Caminos_04.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Brian Heder",
+          "role": "Jason's old friend, a retired criminal",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Brian Heder/Brian_Heder_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Brian Heder/Brian_Heder_03.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Raul Bautista",
+          "role": "Bank robber and mentor",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Raul Bautista/Raul_Bautista_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Raul Bautista/Raul_Bautista_03.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Jason & Lucia",
+          "role": "Partners in crime, for better or worse",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/screenshots/People/Jason and Lucia/Jason_and_Lucia_10.jpg",
+          "duration": 5.5,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Jason, Lucia, Brian, and Raul! The four faces Rockstar's put front and center for GTA 6!"
+        },
+        {
+          "at": 16,
+          "text": "Four completely different paths, one wild story. Who are you most excited to play as?"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "jason_and_lucia_art",
+      "hook": "Every Jason & Lucia key art piece",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "Jason & Lucia",
+          "role": "Official key art",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Jason_and_Lucia_01/Jason_and_Lucia_01_portrait.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Jason_and_Lucia_02/Jason_and_Lucia_02_portrait.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Lock and Load",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Jason_and_Lucia_Lock_and_Load/Jason_Lucia_Lock_And_Load_portrait.jpg",
+          "duration": 3.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Beach",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Jason_and_Lucia_Beach/Jason_and_Lucia_Beach_portrait.jpg",
+          "duration": 3.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "The Robbery",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Jason_and_Lucia_Robbery/Jason_and_Lucia_Robbery_portrait.jpg",
+          "duration": 3.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "The Motel",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Jason_Lucia_Motel/Jason_and_Lucia_Motel_portrait.jpg",
+          "duration": 4.3,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Rockstar's released a ton of key art for Jason and Lucia! Here's every piece so far!"
+        },
+        {
+          "at": 16,
+          "text": "Bonnie and Clyde energy in every single one. Which piece is your favorite?"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "leonida_postcards",
+      "hook": "GTA 6 locations as postcards",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "Vice City",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Postcards/Vice_City/Vice_City_Postcard_portrait.jpg",
+          "duration": 3.3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Leonida Keys",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Postcards/Leonida_Keys/Leonida_Keys_Postcard_portrait.jpg",
+          "duration": 3.3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Port Gellhorn",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Postcards/Port_Gellhorn/Port_Gellhorn_Postcard_portrait.jpg",
+          "duration": 3.3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Ambrosia",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Postcards/Ambrosia/Ambrosia_Postcard_portrait.jpg",
+          "duration": 3.3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Grassrivers",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Postcards/Grassrivers/Grassrivers_Postcard_portrait.jpg",
+          "duration": 3.3,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Mount Kalaga",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/artwork_wallpapers/Postcards/Mount_Kalaga_National_Park/Mount_Kalaga_National_Park_Postcard_portrait.jpg",
+          "duration": 3.5,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Rockstar turned every GTA 6 location into its own postcard, and they look incredible!"
+        },
+        {
+          "at": 14,
+          "text": "Which one would you actually send home from your Leonida vacation?"
+        }
+      ],
+      "bleeps": []
+    },
+    {
+      "id": "ultimate_edition_bonuses_part2",
+      "hook": "GTA 6 Ultimate Edition pt. 2",
+      "hook_seconds": 4,
+      "clips": [
+        {
+          "name": "Electric Fang",
+          "role": "Ultimate-only tattoo shop, 50+ designs by FAILE",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_ELECTRIC_FANG_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_ELECTRIC_FANG_03.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "One-Eyed Willie's",
+          "role": "Off-road mod shop in Lake Leonida",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_ONE_EYED_WILLIE_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_ONE_EYED_WILLIE_02.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Sara's Salon",
+          "role": "Ultimate-only hair and looks",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_SARAS_SALON_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_SARAS_SALON_02.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Stock 305",
+          "role": "Ultimate-only clothing store",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_STOCK_305_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_STOCK_305_03.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Vice City Style",
+          "role": "Retro-inspired outfit pack",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_VICE_CITY_STYLE_01.jpg",
+          "duration": 2.3,
+          "crop_x": 0.5
+        },
+        {
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_VICE_CITY_STYLE_03.jpg",
+          "duration": 1.7,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Weapon Variants",
+          "role": "Exclusive weapon skins",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_WEAPON_VARIANTS_01.jpg",
+          "duration": 2.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "PTT Youngin$ Store",
+          "role": "Illegal goods from a gang compound raid",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_PTT_STORE_01.jpg",
+          "duration": 2.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Vapid Ganado Retro Build",
+          "role": "Classic vehicle mod kit",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_VAPID_GANADO_RETRO_BUILD_01.jpg",
+          "duration": 2.5,
+          "crop_x": 0.5
+        },
+        {
+          "name": "Goodtime Gear",
+          "role": "Exclusive cosmetic outfit pack",
+          "source": "C:/Users/flatty/Projects/gta6/official/media/ultimate_edition/ULTIMATE_EDITION_GOODTIME_GEAR_01.jpg",
+          "duration": 3,
+          "crop_x": 0.5
+        }
+      ],
+      "vo": [
+        {
+          "at": 0,
+          "text": "Round two of GTA 6 Ultimate Edition bonuses! Rockstar wasn't done!"
+        },
+        {
+          "at": 23,
+          "text": "A tattoo shop, two outfit stores, an off-road garage, even illegal goods. Which one are you hitting first?"
+        }
+      ],
+      "bleeps": []
+    }
+  ]
+}
