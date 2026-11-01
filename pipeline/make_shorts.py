@@ -275,21 +275,37 @@ def is_image(source):
     return Path(str(source)).suffix.lower() in IMAGE_EXTS
 
 
-def image_filter(inp, x_pos, y_pos, duration, zoom_amount=0.12):
-    """Still image -> 1080x1920 with a slow Ken Burns zoom, cover-cropped to fill the frame.
+def image_filter(inp, x_pos, y_pos, duration, zoom_amount=0.08, layout=None):
+    """Still image -> 1080x1920: scale to the full output height (100% of the vertical
+    frame kept - head to feet, no top/bottom loss) and crop horizontally only, the same
+    treatment frame_filter gives widescreen video. A gentle Ken Burns zoom tightens in
+    slowly and evenly from all sides rather than cropping hard from frame one.
 
-    Grows a scale filter (eval=frame) under a fixed-size crop rather than using ffmpeg's
-    zoompan, which has a severe performance cliff on longer clips (clocked at 70+ minutes
-    for a 31s montage here instead of the ~2s/clip this approach takes).
+    The old approach force-scaled to cover a 1:1-with-output crop box, which for any
+    16:9 source always threw away the top and bottom 25% before the zoom even started -
+    crop_y had no effect, and close framing was unavoidable. Scaling by height first
+    means 100% of the vertical frame survives at t=0, so crop_x is the only control
+    needed; y stays centred.
+
+    layout="fit" instead letterboxes the whole frame over a blurred copy of itself -
+    kept for cases that want zero cropping at all, but the default above is preferred
+    for keeping a full outfit in frame without the letterbox bars.
     """
-    cover_w, cover_h = W * 2, H * 2  # extra headroom so the zoomed-in crop stays sharp
     dur = max(float(duration), 0.01)
+    if layout == "fit":
+        cover_w, cover_h = W * 2, H * 2
+        return (
+            f"{inp}split[bgsrc][fgsrc];"
+            f"[bgsrc]scale=w={cover_w}:h={cover_h}:force_original_aspect_ratio=increase,"
+            f"crop={cover_w}:{cover_h}:(iw-{cover_w})*{x_pos}:(ih-{cover_h})*{y_pos},"
+            f"boxblur=30:2,eq=brightness=-0.2,scale={W}:{H},setsar=1[bg];"
+            f"[fgsrc]scale=w={W}:h={H}:force_original_aspect_ratio=decrease,setsar=1[fg];"
+            f"[bg][fg]overlay=(W-w)/2:(H-h)/2"
+        )
     return (
-        f"{inp}scale=w={cover_w}:h={cover_h}:force_original_aspect_ratio=increase,"
-        f"crop={cover_w}:{cover_h}:(iw-{cover_w})*{x_pos}:(ih-{cover_h})*{y_pos},setsar=1,"
-        f"scale=w='{cover_w}*(1+{zoom_amount}*t/{dur:.3f})':"
-        f"h='{cover_h}*(1+{zoom_amount}*t/{dur:.3f})':eval=frame,"
-        f"crop=w={W}:h={H}:x='(iw-{W})/2':y='(ih-{H})/2'"
+        f"{inp}scale=w='iw*{H}*(1+{zoom_amount}*t/{dur:.3f})/ih':"
+        f"h='{H}*(1+{zoom_amount}*t/{dur:.3f})':eval=frame,setsar=1,"
+        f"crop=w={W}:h={H}:x='(iw-{W})*{x_pos}':y='(ih-{H})/2'"
     )
 
 
@@ -431,7 +447,8 @@ def render_short(cfg, short):
             if clip_is_image:
                 inputs += ["-framerate", "30", "-loop", "1", "-t", f"{d:.2f}", "-i", str(src)]
                 chain = image_filter(f"[{i}:v]", float(c.get("crop_x", x_pos)),
-                                     float(c.get("crop_y", 0.5)), d)
+                                     float(c.get("crop_y", 0.5)), d,
+                                     layout=c.get("layout", short.get("layout")))
             else:
                 inputs += ["-ss", str(to_seconds(c["start"])), "-t", f"{d:.2f}", "-i", str(src)]
                 chain = frame_filter(f"[{i}:v]", float(c.get("crop_x", x_pos)),
