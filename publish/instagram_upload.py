@@ -75,8 +75,13 @@ def upload_video(file_path=None, caption="", video_url=None, media_type="REELS",
     return media_id
 
 
-def _poll_container(container_id, timeout_s, interval_s):
+def _poll_container(container_id, timeout_s, interval_s, error_confirmations=3):
+    """Meta's status_code read is flaky mid-processing - it can report
+    ERROR for one or two checks and then settle into FINISHED on a later
+    check. So ERROR isn't trusted as terminal until it's read that way
+    error_confirmations times in a row; any FINISHED seen in between wins."""
     deadline = time.time() + timeout_s
+    error_streak = 0
     while time.time() < deadline:
         resp = requests.get(
             f"{GRAPH_BASE}/{container_id}",
@@ -85,8 +90,16 @@ def _poll_container(container_id, timeout_s, interval_s):
         )
         resp.raise_for_status()
         status = resp.json().get("status_code")
-        if status in ("FINISHED", "ERROR", "EXPIRED"):
+        if status == "FINISHED":
             return status
+        if status == "EXPIRED":
+            return status
+        if status == "ERROR":
+            error_streak += 1
+            if error_streak >= error_confirmations:
+                return status
+        else:
+            error_streak = 0
         time.sleep(interval_s)
     return "TIMED_OUT"
 

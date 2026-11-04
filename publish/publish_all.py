@@ -24,6 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(os.path.dirname(HERE), "output")
 CHECKLIST_FILE = os.path.join(HERE, "posting_checklist.json")
 MEDIA_LOG_FILE = os.path.join(HERE, "media_log.json")
+YOUTUBE_LOG_FILE = os.path.join(HERE, "youtube_log.json")
 MEDIA_REPO = os.environ.get(
     "MEDIA_REPO_DIR", os.path.join(os.path.dirname(os.path.dirname(HERE)), "my-media-repo"))
 MEDIA_PUBLIC_BASE_URL = os.environ.get("IG_VIDEO_PUBLIC_BASE_URL", "").rstrip("/")
@@ -85,6 +86,37 @@ def log_instagram_post(video_id, filename, media_id):
         f.write("\n")
 
 
+def load_youtube_log():
+    if os.path.exists(YOUTUBE_LOG_FILE):
+        with open(YOUTUBE_LOG_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return []
+
+
+def find_youtube_upload(log, video_id):
+    for entry in log:
+        if entry["id"] == video_id:
+            return entry
+    return None
+
+
+def log_youtube_post(video_id, filename, yt_video_id, url):
+    """Record a successful YouTube upload so re-running publish_all.py for
+    the same video (e.g. after TikTok/Instagram failed) doesn't re-upload
+    it - checked before every YouTube upload attempt."""
+    log = load_youtube_log()
+    log.append({
+        "id": video_id,
+        "file": filename,
+        "video_id": yt_video_id,
+        "url": url,
+        "posted_at": datetime.now(timezone.utc).isoformat(),
+    })
+    with open(YOUTUBE_LOG_FILE, "w", encoding="utf-8") as f:
+        json.dump(log, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+
+
 def load_checklist():
     with open(CHECKLIST_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -120,6 +152,8 @@ def main():
     p.add_argument("--privacy-tiktok", default="SELF_ONLY",
                     choices=["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY", "FOLLOWER_OF_CREATOR"])
     p.add_argument("--instagram-video-url", help="override the public URL instagram_upload.py fetches from")
+    p.add_argument("--force-youtube", action="store_true",
+                    help="re-upload to YouTube even if youtube_log.json says it's already posted")
     p.add_argument("--list", action="store_true", help="list all video ids and exit")
     args = p.parse_args()
 
@@ -150,9 +184,16 @@ def main():
 
     if "youtube" in platforms:
         print(f"\n--- YouTube: {video['id']} ---")
-        import youtube_upload
-        title, description, tags = build_youtube_args(defaults, video)
-        youtube_upload.upload_video(file_path, title, description, tags, privacy_status=args.privacy_youtube)
+        existing = find_youtube_upload(load_youtube_log(), video["id"])
+        if existing and not args.force_youtube:
+            print(f"  already uploaded at {existing['url']} on {existing['posted_at']} "
+                  f"- skipping (use --force-youtube to re-upload anyway).")
+        else:
+            import youtube_upload
+            title, description, tags = build_youtube_args(defaults, video)
+            yt_video_id, url = youtube_upload.upload_video(
+                file_path, title, description, tags, privacy_status=args.privacy_youtube)
+            log_youtube_post(video["id"], video["file"], yt_video_id, url)
 
     if "tiktok" in platforms:
         print(f"\n--- TikTok: {video['id']} ---")

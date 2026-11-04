@@ -13,6 +13,8 @@ import time
 import requests
 from dotenv import load_dotenv
 
+from tiktok_auth import refresh_access_token
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 load_dotenv(os.path.join(HERE, ".env"))
 
@@ -29,6 +31,8 @@ def _headers():
 
 def upload_video(file_path, caption, privacy_level="SELF_ONLY",
                   disable_comment=False, disable_duet=False, disable_stitch=False):
+    global ACCESS_TOKEN
+    ACCESS_TOKEN = refresh_access_token() or ACCESS_TOKEN
     video_size = os.path.getsize(file_path)
 
     init_resp = requests.post(

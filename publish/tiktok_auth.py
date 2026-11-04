@@ -90,13 +90,44 @@ def exchange_code(code):
     print("Saved TIKTOK_ACCESS_TOKEN and TIKTOK_REFRESH_TOKEN to .env")
 
 
+def refresh_access_token():
+    """TikTok access tokens expire after 24h (the refresh token lasts a
+    year), so tiktok_upload.py calls this before every upload instead of
+    tracking expiry - cheap, and always valid as long as the refresh token
+    itself hasn't expired."""
+    resp = requests.post(
+        TOKEN_URL,
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
+        data={
+            "client_key": CLIENT_KEY,
+            "client_secret": CLIENT_SECRET,
+            "grant_type": "refresh_token",
+            "refresh_token": os.environ["TIKTOK_REFRESH_TOKEN"],
+        },
+    )
+    tokens = resp.json()
+    if not resp.ok or "access_token" not in tokens:
+        print(f"Token refresh failed: {resp.status_code} {resp.text}")
+        resp.raise_for_status()
+        return None
+    set_key(ENV_FILE, "TIKTOK_ACCESS_TOKEN", tokens["access_token"])
+    if "refresh_token" in tokens:
+        set_key(ENV_FILE, "TIKTOK_REFRESH_TOKEN", tokens["refresh_token"])
+    os.environ["TIKTOK_ACCESS_TOKEN"] = tokens["access_token"]
+    return tokens["access_token"]
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
-    p.add_argument("action", nargs="?", choices=["login"], help="open the TikTok login page")
+    p.add_argument("action", nargs="?", choices=["login", "refresh"],
+                    help="open the TikTok login page, or refresh an expired access token")
     p.add_argument("--code", help="authorization code from the callback page")
     args = p.parse_args()
 
     if args.code:
         exchange_code(args.code)
+    elif args.action == "refresh":
+        if refresh_access_token():
+            print("Refreshed TIKTOK_ACCESS_TOKEN in .env")
     else:
         open_login()
