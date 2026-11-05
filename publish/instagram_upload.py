@@ -38,7 +38,7 @@ MEDIA_TYPES = ("REELS", "VIDEO", "STORIES")  # Reels, Feed video post, Story
 
 
 def upload_video(file_path=None, caption="", video_url=None, media_type="REELS",
-                  timeout_s=300, poll_interval_s=10):
+                  timeout_s=600, poll_interval_s=10):
     if media_type not in MEDIA_TYPES:
         raise ValueError(f"media_type must be one of {MEDIA_TYPES}")
     if video_url is None:
@@ -75,13 +75,16 @@ def upload_video(file_path=None, caption="", video_url=None, media_type="REELS",
     return media_id
 
 
-def _poll_container(container_id, timeout_s, interval_s, error_confirmations=3):
-    """Meta's status_code read is flaky mid-processing - it can report
-    ERROR for one or two checks and then settle into FINISHED on a later
-    check. So ERROR isn't trusted as terminal until it's read that way
-    error_confirmations times in a row; any FINISHED seen in between wins."""
+def _poll_container(container_id, timeout_s, interval_s):
+    """Meta's status_code read is flaky mid-processing: it can report ERROR
+    for a while and then settle into FINISHED on its own (confirmed by hand
+    multiple times - including once after staying ERROR for longer than a
+    3-strikes debounce could tolerate). So ERROR is treated like any other
+    non-terminal state here and polled straight through; only EXPIRED is
+    trusted immediately, and a container that's still not FINISHED by
+    timeout_s is reported as TIMED_OUT rather than failed outright."""
     deadline = time.time() + timeout_s
-    error_streak = 0
+    last_status = None
     while time.time() < deadline:
         resp = requests.get(
             f"{GRAPH_BASE}/{container_id}",
@@ -90,18 +93,11 @@ def _poll_container(container_id, timeout_s, interval_s, error_confirmations=3):
         )
         resp.raise_for_status()
         status = resp.json().get("status_code")
-        if status == "FINISHED":
+        if status in ("FINISHED", "EXPIRED"):
             return status
-        if status == "EXPIRED":
-            return status
-        if status == "ERROR":
-            error_streak += 1
-            if error_streak >= error_confirmations:
-                return status
-        else:
-            error_streak = 0
+        last_status = status
         time.sleep(interval_s)
-    return "TIMED_OUT"
+    return f"TIMED_OUT (last seen: {last_status})"
 
 
 if __name__ == "__main__":
