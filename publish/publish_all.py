@@ -1,9 +1,10 @@
-"""Unified CLI: post one short to YouTube, TikTok, and/or Instagram from
-posting_checklist.json.
+"""Unified CLI: post one or more shorts to YouTube, TikTok, and/or Instagram
+from posting_checklist.json.
 
 Examples:
   python publish_all.py characters --platforms youtube
   python publish_all.py characters --platforms youtube,tiktok,instagram
+  python publish_all.py ultimate_edition_bonuses leonida_new_drop --platforms youtube,tiktok,instagram
   python publish_all.py --list
 
 Each platform's auth/setup is handled by its own module (see the docstrings
@@ -143,40 +144,18 @@ def build_social_caption(core_tags, platform_block):
     return f"{platform_block['caption']}\n\n{tags}"
 
 
-def main():
-    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("video_id", nargs="?")
-    p.add_argument("--platforms", default="youtube,tiktok,instagram",
-                    help="comma-separated subset of youtube,tiktok,instagram")
-    p.add_argument("--privacy-youtube", default="public", choices=["public", "unlisted", "private"])
-    p.add_argument("--privacy-tiktok", default="SELF_ONLY",
-                    choices=["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY", "FOLLOWER_OF_CREATOR"])
-    p.add_argument("--instagram-video-url", help="override the public URL instagram_upload.py fetches from")
-    p.add_argument("--force-youtube", action="store_true",
-                    help="re-upload to YouTube even if youtube_log.json says it's already posted")
-    p.add_argument("--list", action="store_true", help="list all video ids and exit")
-    args = p.parse_args()
-
-    checklist = load_checklist()
-
-    if args.list:
-        for v in checklist["videos"]:
-            flag = "  !! " + v["note"] if "note" in v else ""
-            print(f"{v['date']}  {v['id']:<32} {v['file']}{flag}")
-        return
-
-    if not args.video_id:
-        p.error("video_id is required unless --list is given")
-
-    video = find_video(checklist, args.video_id)
+def publish_one(video, checklist, args):
+    """Post a single video to the requested platforms. Raises on failure -
+    the caller decides whether that should stop the batch."""
     file_path = os.path.join(OUTPUT_DIR, video["file"])
     if not os.path.exists(file_path):
-        sys.exit(f"Video file not found: {file_path}")
+        raise FileNotFoundError(f"Video file not found: {file_path}")
 
     if "note" in video:
         print(f"NOTE: {video['note']}")
-        confirm = input("Continue anyway? [y/N] ").strip().lower()
+        confirm = input(f"Continue posting {video['id']} anyway? [y/N] ").strip().lower()
         if confirm != "y":
+            print(f"  skipped {video['id']}.")
             return
 
     platforms = [p.strip() for p in args.platforms.split(",") if p.strip()]
@@ -211,6 +190,54 @@ def main():
                                                    video_url=args.instagram_video_url)
         log_instagram_post(video["id"], video["file"], media_id)
         run_prune()
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("video_ids", nargs="*", metavar="video_id", help="one or more video ids to post")
+    p.add_argument("--platforms", default="youtube,tiktok,instagram",
+                    help="comma-separated subset of youtube,tiktok,instagram")
+    p.add_argument("--privacy-youtube", default="public", choices=["public", "unlisted", "private"])
+    p.add_argument("--privacy-tiktok", default="SELF_ONLY",
+                    choices=["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY", "FOLLOWER_OF_CREATOR"])
+    p.add_argument("--instagram-video-url", help="override the public URL instagram_upload.py fetches from "
+                    "(only valid with a single video_id - each video needs its own hosted URL)")
+    p.add_argument("--force-youtube", action="store_true",
+                    help="re-upload to YouTube even if youtube_log.json says it's already posted")
+    p.add_argument("--list", action="store_true", help="list all video ids and exit")
+    args = p.parse_args()
+
+    checklist = load_checklist()
+
+    if args.list:
+        for v in checklist["videos"]:
+            flag = "  !! " + v["note"] if "note" in v else ""
+            print(f"{v['date']}  {v['id']:<32} {v['file']}{flag}")
+        return
+
+    if not args.video_ids:
+        p.error("at least one video_id is required unless --list is given")
+    if args.instagram_video_url and len(args.video_ids) > 1:
+        p.error("--instagram-video-url only makes sense with a single video_id")
+
+    videos = [find_video(checklist, vid) for vid in args.video_ids]
+
+    failures = []
+    for i, video in enumerate(videos, 1):
+        if len(videos) > 1:
+            print(f"\n=== [{i}/{len(videos)}] {video['id']} ===")
+        try:
+            publish_one(video, checklist, args)
+        except Exception as e:
+            print(f"  FAILED: {video['id']}: {e}")
+            failures.append(video["id"])
+
+    if len(videos) > 1:
+        ok = len(videos) - len(failures)
+        print(f"\n=== Done: {ok}/{len(videos)} posted without error"
+              f"{' - failed: ' + ', '.join(failures) if failures else ''} ===")
+    if failures:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
