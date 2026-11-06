@@ -132,7 +132,7 @@ def find_video(checklist, video_id):
 
 def build_youtube_args(defaults, video):
     yt = video["youtube"]
-    hashtag_line = " ".join(defaults["youtube_hashtags"])
+    hashtag_line = " ".join(yt.get("hashtags", defaults["youtube_hashtags"]))
     credit = defaults.get(f"credit_{yt.get('credit')}", defaults["credit_footage"])
     description = f"{yt['description']}\n\n{credit}\n\n{hashtag_line}"
     tags = defaults["youtube_tags"]
@@ -187,7 +187,8 @@ def publish_one(video, checklist, args):
         import instagram_upload
         caption = build_social_caption(defaults["instagram_core_tags"], video["instagram"])
         media_id = instagram_upload.upload_video(file_path=video["file"], caption=caption,
-                                                   video_url=args.instagram_video_url)
+                                                   video_url=args.instagram_video_url,
+                                                   media_type=args.instagram_media_type)
         log_instagram_post(video["id"], video["file"], media_id)
         run_prune()
 
@@ -202,6 +203,8 @@ def main():
                     choices=["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY", "FOLLOWER_OF_CREATOR"])
     p.add_argument("--instagram-video-url", help="override the public URL instagram_upload.py fetches from "
                     "(only valid with a single video_id - each video needs its own hosted URL)")
+    p.add_argument("--instagram-media-type", default="REELS", choices=["REELS", "VIDEO", "STORIES"],
+                    help="REELS (default, max 15min/300MB), VIDEO (feed post), or STORIES")
     p.add_argument("--force-youtube", action="store_true",
                     help="re-upload to YouTube even if youtube_log.json says it's already posted")
     p.add_argument("--list", action="store_true", help="list all video ids and exit")
