@@ -38,7 +38,7 @@ MEDIA_TYPES = ("REELS", "VIDEO", "STORIES")  # Reels, Feed video post, Story
 
 
 def upload_video(file_path=None, caption="", video_url=None, media_type="REELS",
-                  timeout_s=600, poll_interval_s=10):
+                  timeout_s=600, poll_interval_s=10, thumb_offset_ms=None):
     if media_type not in MEDIA_TYPES:
         raise ValueError(f"media_type must be one of {MEDIA_TYPES}")
     if video_url is None:
@@ -51,6 +51,10 @@ def upload_video(file_path=None, caption="", video_url=None, media_type="REELS",
     if media_type != "STORIES":
         # Stories don't carry a caption.
         data["caption"] = caption[:2200]
+    if thumb_offset_ms is not None:
+        # Which frame of the video becomes the thumbnail - without it,
+        # Instagram defaults to the first frame.
+        data["thumb_offset"] = thumb_offset_ms
 
     create_resp = requests.post(
         f"{GRAPH_BASE}/{IG_USER_ID}/media",

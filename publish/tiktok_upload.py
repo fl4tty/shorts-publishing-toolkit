@@ -6,6 +6,11 @@ privacy_level options: PUBLIC_TO_EVERYONE, MUTUAL_FOLLOW_FRIENDS, SELF_ONLY,
 FOLLOWER_OF_CREATOR. Until your app passes TikTok's Content Posting API
 audit, PUBLIC_TO_EVERYONE will be rejected or silently downgraded for
 non-tester accounts — see the note in tiktok_auth.py.
+
+cover_offset_ms picks which frame of the video TikTok uses as the cover
+(post_info.video_cover_timestamp_ms) — without it, TikTok defaults to the
+video's first frame, which misses any on-screen element that isn't visible
+right at t=0.
 """
 import os
 import time
@@ -30,22 +35,27 @@ def _headers():
 
 
 def upload_video(file_path, caption, privacy_level="SELF_ONLY",
-                  disable_comment=False, disable_duet=False, disable_stitch=False):
+                  disable_comment=False, disable_duet=False, disable_stitch=False,
+                  cover_offset_ms=None):
     global ACCESS_TOKEN
     ACCESS_TOKEN = refresh_access_token() or ACCESS_TOKEN
     video_size = os.path.getsize(file_path)
+
+    post_info = {
+        "title": caption[:2200],
+        "privacy_level": privacy_level,
+        "disable_duet": disable_duet,
+        "disable_comment": disable_comment,
+        "disable_stitch": disable_stitch,
+    }
+    if cover_offset_ms is not None:
+        post_info["video_cover_timestamp_ms"] = cover_offset_ms
 
     init_resp = requests.post(
         f"{API_BASE}/post/publish/video/init/",
         headers=_headers(),
         json={
-            "post_info": {
-                "title": caption[:2200],
-                "privacy_level": privacy_level,
-                "disable_duet": disable_duet,
-                "disable_comment": disable_comment,
-                "disable_stitch": disable_stitch,
-            },
+            "post_info": post_info,
             "source_info": {
                 "source": "FILE_UPLOAD",
                 "video_size": video_size,

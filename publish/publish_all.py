@@ -30,6 +30,7 @@ TIKTOK_LOG_FILE = os.path.join(HERE, "tiktok_log.json")
 MEDIA_REPO = os.environ.get(
     "MEDIA_REPO_DIR", os.path.join(os.path.dirname(os.path.dirname(HERE)), "my-media-repo"))
 MEDIA_PUBLIC_BASE_URL = os.environ.get("IG_VIDEO_PUBLIC_BASE_URL", "").rstrip("/")
+PIPELINE_DIR = os.path.join(os.path.dirname(HERE), "pipeline")
 
 
 def host_on_media_repo(file_path, filename, poll_timeout_s=120, poll_interval_s=8):
@@ -150,6 +151,48 @@ def log_tiktok_post(video_id, filename, publish_id, status):
         f.write("\n")
 
 
+def find_short_config(video_id):
+    """Locate the shorts.json entry for a video id - same SHORTS_CONFIG
+    convention as make_shorts.py, so this points at whatever config you
+    actually rendered the video from."""
+    path = os.environ.get("SHORTS_CONFIG", os.path.join(PIPELINE_DIR, "shorts.json"))
+    if not os.path.isabs(path):
+        path = os.path.join(PIPELINE_DIR, path)
+    if not os.path.exists(path):
+        return None, None
+    with open(path, encoding="utf-8-sig") as f:
+        cfg = json.load(f)
+    short = next((s for s in cfg.get("shorts", []) if s["id"] == video_id), None)
+    return (cfg, short) if short else (None, None)
+
+
+def compute_cover_offset_ms(video_id):
+    """Midpoint (ms) of the first time the logo overlay (if any) is on
+    screen, for use as TikTok's/Instagram's cover-frame offset - without
+    this, both default to frame 0, which misses any on-screen element that
+    isn't visible right at t=0. Returns None (let the platform use its own
+    default frame) if the short has no VO, no logo overlay configured, or
+    its voiceover WAVs haven't been generated yet."""
+    cfg, short = find_short_config(video_id)
+    if not short or not short.get("vo"):
+        return None
+    if PIPELINE_DIR not in sys.path:
+        sys.path.insert(0, PIPELINE_DIR)
+    import re
+    import make_shorts as ms
+    pattern = re.compile(short.get("logo_pattern", cfg.get("logo_pattern", ms.DEFAULT_LOGO_PATTERN)),
+                          re.IGNORECASE)
+    try:
+        segments = ms.layout_segments(short)
+    except SystemExit:
+        return None
+    wins = ms.logo_windows(segments, pattern)
+    if not wins:
+        return None
+    a, b = wins[0]
+    return int((a + b) / 2 * 1000)
+
+
 def load_checklist():
     with open(CHECKLIST_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -215,7 +258,11 @@ def publish_one(video, checklist, args):
         else:
             import tiktok_upload
             caption = build_social_caption(defaults["tiktok_core_tags"], video["tiktok"])
-            publish_id, status = tiktok_upload.upload_video(file_path, caption, privacy_level=args.privacy_tiktok)
+            cover_offset_ms = compute_cover_offset_ms(video["id"])
+            if cover_offset_ms is not None:
+                print(f"  using cover frame at {cover_offset_ms}ms (logo window)")
+            publish_id, status = tiktok_upload.upload_video(file_path, caption, privacy_level=args.privacy_tiktok,
+                                                              cover_offset_ms=cover_offset_ms)
             log_tiktok_post(video["id"], video["file"], publish_id, status)
 
     if "instagram" in platforms:
@@ -224,9 +271,13 @@ def publish_one(video, checklist, args):
             host_on_media_repo(file_path, video["file"])
         import instagram_upload
         caption = build_social_caption(defaults["instagram_core_tags"], video["instagram"])
+        thumb_offset_ms = compute_cover_offset_ms(video["id"])
+        if thumb_offset_ms is not None:
+            print(f"  using cover frame at {thumb_offset_ms}ms (logo window)")
         media_id = instagram_upload.upload_video(file_path=video["file"], caption=caption,
                                                    video_url=args.instagram_video_url,
-                                                   media_type=args.instagram_media_type)
+                                                   media_type=args.instagram_media_type,
+                                                   thumb_offset_ms=thumb_offset_ms)
         log_instagram_post(video["id"], video["file"], media_id)
         run_prune()
 
