@@ -111,6 +111,19 @@ def run(cmd, **kw):
 
 # --- TTS ---------------------------------------------------------------------
 
+def tts_friendly(text):
+    """edge-tts's neural voices read "GTA 6"/"GTA VI" as a model-number-style code -
+    every character spelled out individually, digit included ("G... T... A... S...
+    I... X..."), instead of saying the acronym then the word "six". Swap in a plain
+    word form for the TTS input only; every other use of the VO text (logo-window
+    timing via DEFAULT_LOGO_PATTERN, captions) keeps the original "GTA 6"/"GTA VI"
+    spelling, since this is a speech-only fix.
+    """
+    text = re.sub(r"\bGTA\s*6\b", "GTA Six", text)
+    text = re.sub(r"\bGTA\s*VI\b", "GTA Six", text, flags=re.IGNORECASE)
+    return text
+
+
 def cmd_voices(cfg):
     if cfg.get("engine") == "edge":
         run([sys.executable, "-m", "edge_tts", "--list-voices"])
@@ -155,7 +168,7 @@ def cmd_tts(cfg, shorts):
         short_cfg = {**cfg, **{k: short[k] for k in voice_keys if k in short}}
         for n, seg in enumerate(short["vo"], 1):
             text_file = WORK_DIR / f"{short['id']}_{n}.txt"
-            text_file.write_text(seg["text"], encoding="utf-8")
+            text_file.write_text(tts_friendly(seg["text"]), encoding="utf-8")
             engine(short_cfg, text_file, vo_path(short, n))
 
 
