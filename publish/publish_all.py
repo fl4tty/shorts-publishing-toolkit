@@ -26,6 +26,7 @@ OUTPUT_DIR = os.path.join(os.path.dirname(HERE), "output")
 CHECKLIST_FILE = os.path.join(HERE, "posting_checklist.json")
 MEDIA_LOG_FILE = os.path.join(HERE, "media_log.json")
 YOUTUBE_LOG_FILE = os.path.join(HERE, "youtube_log.json")
+TIKTOK_LOG_FILE = os.path.join(HERE, "tiktok_log.json")
 MEDIA_REPO = os.environ.get(
     "MEDIA_REPO_DIR", os.path.join(os.path.dirname(os.path.dirname(HERE)), "my-media-repo"))
 MEDIA_PUBLIC_BASE_URL = os.environ.get("IG_VIDEO_PUBLIC_BASE_URL", "").rstrip("/")
@@ -118,6 +119,37 @@ def log_youtube_post(video_id, filename, yt_video_id, url):
         f.write("\n")
 
 
+def load_tiktok_log():
+    if os.path.exists(TIKTOK_LOG_FILE):
+        with open(TIKTOK_LOG_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return []
+
+
+def find_tiktok_upload(log, video_id):
+    for entry in log:
+        if entry["id"] == video_id:
+            return entry
+    return None
+
+
+def log_tiktok_post(video_id, filename, publish_id, status):
+    """Record a TikTok publish attempt so re-running publish_all.py for the
+    same video doesn't post it twice - checked before every TikTok upload
+    attempt, mirroring the existing YouTube dedup log."""
+    log = load_tiktok_log()
+    log.append({
+        "id": video_id,
+        "file": filename,
+        "publish_id": publish_id,
+        "status": status,
+        "posted_at": datetime.now(timezone.utc).isoformat(),
+    })
+    with open(TIKTOK_LOG_FILE, "w", encoding="utf-8") as f:
+        json.dump(log, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+
+
 def load_checklist():
     with open(CHECKLIST_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -176,9 +208,15 @@ def publish_one(video, checklist, args):
 
     if "tiktok" in platforms:
         print(f"\n--- TikTok: {video['id']} ---")
-        import tiktok_upload
-        caption = build_social_caption(defaults["tiktok_core_tags"], video["tiktok"])
-        tiktok_upload.upload_video(file_path, caption, privacy_level=args.privacy_tiktok)
+        existing = find_tiktok_upload(load_tiktok_log(), video["id"])
+        if existing and not args.force_tiktok:
+            print(f"  already posted (publish_id {existing['publish_id']}, status {existing['status']}) "
+                  f"on {existing['posted_at']} - skipping (use --force-tiktok to re-upload anyway).")
+        else:
+            import tiktok_upload
+            caption = build_social_caption(defaults["tiktok_core_tags"], video["tiktok"])
+            publish_id, status = tiktok_upload.upload_video(file_path, caption, privacy_level=args.privacy_tiktok)
+            log_tiktok_post(video["id"], video["file"], publish_id, status)
 
     if "instagram" in platforms:
         print(f"\n--- Instagram: {video['id']} ---")
@@ -207,6 +245,8 @@ def main():
                     help="REELS (default, max 15min/300MB), VIDEO (feed post), or STORIES")
     p.add_argument("--force-youtube", action="store_true",
                     help="re-upload to YouTube even if youtube_log.json says it's already posted")
+    p.add_argument("--force-tiktok", action="store_true",
+                    help="re-upload to TikTok even if tiktok_log.json says it's already posted")
     p.add_argument("--list", action="store_true", help="list all video ids and exit")
     args = p.parse_args()
 
