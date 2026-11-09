@@ -16,6 +16,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 from datetime import datetime, timezone
 
@@ -193,6 +194,20 @@ def compute_cover_offset_ms(video_id):
     return int((a + b) / 2 * 1000)
 
 
+def extract_thumbnail_frame(file_path, offset_ms):
+    """TikTok/Instagram take a timestamp and pick the frame themselves;
+    YouTube's thumbnails.set needs an actual image file, so pull one frame
+    with ffmpeg. Caller is responsible for deleting the returned temp file."""
+    fd, out_path = tempfile.mkstemp(suffix=".jpg")
+    os.close(fd)
+    subprocess.run(
+        ["ffmpeg", "-y", "-ss", str(offset_ms / 1000), "-i", file_path,
+         "-frames:v", "1", "-update", "1", "-q:v", "2", out_path],
+        check=True, capture_output=True,
+    )
+    return out_path
+
+
 def load_checklist():
     with open(CHECKLIST_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -245,8 +260,18 @@ def publish_one(video, checklist, args):
         else:
             import youtube_upload
             title, description, tags = build_youtube_args(defaults, video)
-            yt_video_id, url = youtube_upload.upload_video(
-                file_path, title, description, tags, privacy_status=args.privacy_youtube)
+            thumb_offset_ms = compute_cover_offset_ms(video["id"])
+            thumbnail_path = None
+            if thumb_offset_ms is not None:
+                print(f"  using cover frame at {thumb_offset_ms}ms (GTA 6 logo window)")
+                thumbnail_path = extract_thumbnail_frame(file_path, thumb_offset_ms)
+            try:
+                yt_video_id, url = youtube_upload.upload_video(
+                    file_path, title, description, tags, privacy_status=args.privacy_youtube,
+                    thumbnail_path=thumbnail_path)
+            finally:
+                if thumbnail_path:
+                    os.remove(thumbnail_path)
             log_youtube_post(video["id"], video["file"], yt_video_id, url)
 
     if "tiktok" in platforms:

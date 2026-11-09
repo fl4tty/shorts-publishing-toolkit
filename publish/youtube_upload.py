@@ -49,8 +49,18 @@ def get_service():
     return googleapiclient.discovery.build("youtube", "v3", credentials=creds)
 
 
+def set_thumbnail(service, video_id, image_path):
+    """Requires the channel to have custom-thumbnail access (phone-verified) -
+    otherwise the API returns 403 "youtubeSignupRequired" even with a valid
+    upload-scoped token. youtube.upload scope is sufficient for this call,
+    no extra scope needed (confirmed against the API reference)."""
+    media = googleapiclient.http.MediaFileUpload(image_path, mimetype="image/jpeg")
+    service.thumbnails().set(videoId=video_id, media_body=media).execute()
+    print(f"  YouTube: thumbnail set from {os.path.basename(image_path)}")
+
+
 def upload_video(file_path, title, description, tags=None, privacy_status="public",
-                  made_for_kids=False, category_id=GAMING_CATEGORY_ID):
+                  made_for_kids=False, category_id=GAMING_CATEGORY_ID, thumbnail_path=None):
     service = get_service()
     body = {
         "snippet": {
@@ -76,6 +86,8 @@ def upload_video(file_path, title, description, tags=None, privacy_status="publi
     video_id = response["id"]
     url = f"https://youtube.com/shorts/{video_id}"
     print(f"YouTube: {url}")
+    if thumbnail_path:
+        set_thumbnail(service, video_id, thumbnail_path)
     return video_id, url
 
 
