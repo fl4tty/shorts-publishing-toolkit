@@ -281,7 +281,10 @@ def publish_one(video, checklist, args):
             print(f"  already posted (publish_id {existing['publish_id']}, status {existing['status']}) "
                   f"on {existing['posted_at']} - skipping (use --force-tiktok to re-upload anyway).")
         else:
-            import tiktok_upload
+            if args.tiktok_method == "browser":
+                import tiktok_browser_upload as tiktok_upload
+            else:
+                import tiktok_upload
             caption = build_social_caption(defaults["tiktok_core_tags"], video["tiktok"])
             cover_offset_ms = compute_cover_offset_ms(video["id"])
             if cover_offset_ms is not None:
@@ -313,8 +316,13 @@ def main():
     p.add_argument("--platforms", default="youtube,tiktok,instagram",
                     help="comma-separated subset of youtube,tiktok,instagram")
     p.add_argument("--privacy-youtube", default="public", choices=["public", "unlisted", "private"])
-    p.add_argument("--privacy-tiktok", default="SELF_ONLY",
-                    choices=["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY", "FOLLOWER_OF_CREATOR"])
+    p.add_argument("--tiktok-method", default="browser", choices=["browser", "api"],
+                    help="browser (default): simulate a manual upload through tiktok.com, not subject to the "
+                    "Content Posting API's audit restriction, can post fully public. api: the audited-API path "
+                    "in tiktok_upload.py, limited to SELF_ONLY until the app passes TikTok's review.")
+    p.add_argument("--privacy-tiktok", default=None,
+                    choices=["PUBLIC_TO_EVERYONE", "MUTUAL_FOLLOW_FRIENDS", "SELF_ONLY", "FOLLOWER_OF_CREATOR"],
+                    help="defaults to PUBLIC_TO_EVERYONE for --tiktok-method browser, SELF_ONLY for api")
     p.add_argument("--instagram-video-url", help="override the public URL instagram_upload.py fetches from "
                     "(only valid with a single video_id - each video needs its own hosted URL)")
     p.add_argument("--instagram-media-type", default="REELS", choices=["REELS", "VIDEO", "STORIES"],
@@ -325,6 +333,8 @@ def main():
                     help="re-upload to TikTok even if tiktok_log.json says it's already posted")
     p.add_argument("--list", action="store_true", help="list all video ids and exit")
     args = p.parse_args()
+    if args.privacy_tiktok is None:
+        args.privacy_tiktok = "PUBLIC_TO_EVERYONE" if args.tiktok_method == "browser" else "SELF_ONLY"
 
     checklist = load_checklist()
 

@@ -6,6 +6,8 @@ publish/token_youtube.json
 publish/posting_checklist.json
 publish/media_log.json
 publish/prune_media.log
+publish/.tiktok_browser_profile/
+publish/upload_failure.png
 
 # generated media / cache
 __pycache__/
